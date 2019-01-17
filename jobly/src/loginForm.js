@@ -6,8 +6,8 @@ class LoginForm extends Component {
     this.state = {
       username: '',
       password: '',
-      firstname: '',
-      lastname: '',
+      first_name: '',
+      last_name: '',
       email: '',
       loginActive: true,
       signUpActive: false
@@ -20,24 +20,25 @@ class LoginForm extends Component {
 
   handleSubmitLogin(evt) {
     evt.preventDefault();
-    this.props.handleLogin({
-      username: this.state.username,
-      password: this.state.password
-    });
+    const { username, password } = this.state;
+    this.props.handleLogin(username, password);
     this.setState({ username: '', password: '' });
   }
 
   handleSubmitSignUp(evt) {
     evt.preventDefault();
+    const { username, password, first_name, last_name, email } = this.state;
 
-    this.props.handleSignUp({
-      username: this.state.username,
-      password: this.state.password,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      email: this.state.email
+    this.props.handleSignUp(username, password, first_name, last_name, email);
+    // resets form
+    this.setState({
+      username: '',
+      password: '',
+      first_name: '',
+      last_name: '',
+      email: ''
     });
-    this.setState({ username: '', password: '' });
+    this.props.history.replace('/jobs');
   }
 
   handleChange(evt) {
@@ -115,26 +116,26 @@ class LoginForm extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleFirstName">First name</label>
+              <label htmlFor="examplefirst_name">First name</label>
               <input
                 onChange={this.handleChange}
-                name="firstname"
-                value={this.state.firstname}
-                type="firstname"
+                name="first_name"
+                value={this.state.first_name}
+                type="first_name"
                 className="form-control"
-                id="exampleInputfirstname1"
+                id="exampleInputfirst_name1"
                 placeholder="First Name"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="exampleLastName">Last Name</label>
+              <label htmlFor="examplelast_name">Last Name</label>
               <input
                 onChange={this.handleChange}
-                name="lastname"
-                value={this.state.lastname}
-                type="lastname"
+                name="last_name"
+                value={this.state.last_name}
+                type="last_name"
                 className="form-control"
-                id="exampleInputlastname1"
+                id="exampleInputlast_name1"
                 placeholder="Last Name"
               />
             </div>
@@ -161,13 +162,17 @@ class LoginForm extends Component {
 
     return (
       <div>
-        <div class="btn-group mr-auto" role="group" aria-label="Basic example">
+        <div
+          className="btn-group mr-auto"
+          role="group"
+          aria-label="Basic example"
+        >
           <button
             onClick={() =>
               this.setState({ loginActive: true, signUpActive: false })
             }
             type="button"
-            class="btn btn-secondary"
+            className="btn btn-secondary"
           >
             Login
           </button>
@@ -176,7 +181,7 @@ class LoginForm extends Component {
               this.setState({ loginActive: false, signUpActive: true })
             }
             type="button"
-            class="btn btn-secondary"
+            className="btn btn-secondary"
           >
             Sign up
           </button>

@@ -28,10 +28,17 @@ class JoblyApi {
     localStorage.setItem('token', token.token);
   }
 
-  static async signUp(username, password, firstName, lastName, email) {
+  static async signUp(username, password, first_name, last_name, email) {
+    console.log({ username, password, first_name, last_name, email });
     let token = await this.request(
       'users',
-      { username, password, firstName, lastName, email },
+      {
+        username,
+        password,
+        first_name,
+        last_name,
+        email
+      },
       'post'
     );
     localStorage.setItem('token', token.token);
