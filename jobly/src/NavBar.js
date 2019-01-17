@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+// import './NavBar.css';
 
 class NavBar extends Component {
   static defaultProps = {};
@@ -8,10 +9,13 @@ class NavBar extends Component {
       fontWeight: 'bold'
     };
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className="navbar navbar-expand-lg navbar-primary border-bottom"
+        style={{ backgroundColor: 'white' }}
+      >
         <NavLink
           activeStyle={activeStyle}
-          className="navbar-brand"
+          className="navbar-brand navbar-nav mr-auto"
           exact
           to="/"
         >

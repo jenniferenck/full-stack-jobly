@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 
 class SearchForm extends Component {
-  static defaultProps = {};
   render() {
     return (
-      <div className="SearchForm">
+      <div className="SearchForm mt-5">
         <form>
-          <div className="form-group">
-            <label for="searchForm" />
+          <div className="form-group input-group">
+            <label htmlFor="searchForm" />
             <input
               type="text"
               className="form-control"
@@ -15,10 +14,12 @@ class SearchForm extends Component {
               aria-describedby="search"
               placeholder="Enter Search Term..."
             />
+            <span className="input-group-btn">
+              <button type="submit" className="btn btn-primary">
+                Submit
+              </button>
+            </span>
           </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
         </form>
       </div>
     );
