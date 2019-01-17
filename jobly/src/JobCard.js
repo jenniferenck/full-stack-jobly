@@ -7,10 +7,12 @@ class JobCard extends Component {
     // destructure props...
     return (
       <div className="JobCard card my-3">
-        <h3>{this.props.title}</h3>
         <div className="card-body">
-          <p>Salary: {this.props.salary}</p>
-          <p>Equity: {this.props.equity}</p>
+          <h5 className="card-title d-flex justify-content-between">
+            <div>{this.props.title}</div>
+            <p>Salary: {this.props.salary}</p>
+            <p>Equity: {this.props.equity}</p>
+          </h5>
           <button
             // onClick={this.props.handleClick}
             type="button"
