@@ -8,63 +8,94 @@ class NavBar extends Component {
     const activeStyle = {
       fontWeight: 'bold'
     };
-    return (
-      <nav
-        className="navbar navbar-expand-lg navbar-primary border-bottom"
-        style={{ backgroundColor: 'white' }}
-      >
-        <NavLink
-          activeStyle={activeStyle}
-          className="navbar-brand navbar-nav mr-auto"
-          exact
-          to="/"
+    if (this.props.isLoggedIn) {
+      return (
+        <nav
+          className="navbar navbar-expand-lg navbar-primary border-bottom"
+          style={{ backgroundColor: 'white' }}
         >
-          Jobly
-        </NavLink>
+          <NavLink
+            activeStyle={activeStyle}
+            className="navbar-brand navbar-nav mr-auto"
+            exact
+            to="/"
+          >
+            Jobly
+          </NavLink>
 
-        <div className="navbar" id="navbarText">
-          <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <NavLink
-                activeStyle={activeStyle}
-                className="nav-link"
-                to="/companies"
-              >
-                Companies <span className="sr-only" />
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                activeStyle={activeStyle}
-                className="nav-link"
-                to="/jobs"
-              >
-                Jobs
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                activeStyle={activeStyle}
-                className="nav-link"
-                to="/profile"
-              >
-                Profile
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink
-                activeStyle={activeStyle}
-                className="nav-link"
-                to="/logout"
-              >
-                Log out
-                {/* HANDLE CLICK on this NavLink to wipe local storage and send back to / */}
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </nav>
-    );
+          <div className="navbar" id="navbarText">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="nav-link"
+                  to="/companies"
+                >
+                  Companies <span className="sr-only" />
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="nav-link"
+                  to="/jobs"
+                >
+                  Jobs
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="nav-link"
+                  to="/profile"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="nav-link"
+                  to="/logout"
+                >
+                  Log out
+                  {/* HANDLE CLICK on this NavLink to wipe local storage and send back to / */}
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      );
+    } else {
+      return (
+        <nav
+          className="navbar navbar-expand-lg navbar-primary border-bottom"
+          style={{ backgroundColor: 'white' }}
+        >
+          <NavLink
+            activeStyle={activeStyle}
+            className="navbar-brand navbar-nav mr-auto"
+            exact
+            to="/"
+          >
+            Jobly
+          </NavLink>
+          <div className="navbar" id="navbarText">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
+                <NavLink
+                  activeStyle={activeStyle}
+                  className="nav-link"
+                  to="/login"
+                >
+                  Log In <span className="sr-only" />
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      );
+    }
   }
 }
 

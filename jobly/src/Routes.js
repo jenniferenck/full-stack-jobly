@@ -4,6 +4,7 @@ import Jobs from './Jobs';
 import Companies from './Companies';
 import Company from './Company';
 import HomePage from './HomePage';
+import LoginForm from './loginForm';
 
 class Routes extends Component {
   static defaultProps = {};
@@ -15,7 +16,12 @@ class Routes extends Component {
           <Route
             exact
             path="/login"
-            render={() => <h1>This is the login page</h1>}
+            render={() => (
+              <LoginForm
+                handleLogin={this.props.handleLogin}
+                handleSignUp={this.props.handleSignUp}
+              />
+            )}
           />
           <Route exact path="/companies" render={() => <Companies />} />
           <Route

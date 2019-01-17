@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class SearchForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { companies: [], company: '' };
+    this.state = { companies: [], search: '', jobs: [] };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -11,9 +11,9 @@ class SearchForm extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    console.log('this is the SEARCH TERM', this.state.company);
-    this.props.handleSearch({ search: this.state.company });
-    this.setState({ companies: [] });
+    console.log('this is the SEARCH TERM', this.state.search);
+    this.props.handleSearch({ search: this.state.search });
+    this.setState({ companies: [], search: '', jobs: [] });
   }
 
   handleChange(evt) {
@@ -30,8 +30,8 @@ class SearchForm extends Component {
             <label htmlFor="searchForm" />
             <input
               onChange={this.handleChange}
-              name="company"
-              value={this.state.company}
+              name="search"
+              value={this.state.search}
               type="text"
               className="form-control"
               id="searchForm"

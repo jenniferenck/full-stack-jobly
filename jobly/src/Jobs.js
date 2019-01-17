@@ -7,6 +7,8 @@ class Jobs extends Component {
   constructor(props) {
     super(props);
     this.state = { jobs: [] };
+
+    this.searchJobs = this.searchJobs.bind(this);
   }
   static defaultProps = {};
 
@@ -23,11 +25,25 @@ class Jobs extends Component {
     }
   }
 
+  async searchJobs(query) {
+    try {
+      console.log('QUERY inside jobs component', query);
+      this.setState({
+        jobs: await JoblyApi.getAllJobs(query)
+      });
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+      console.log('error msg', error);
+    }
+  }
+
   render() {
     // will need to pass a onSubmit handler to the searchform for generating a request
     return (
       <div className="Jobs">
-        <SearchForm />
+        <SearchForm handleSearch={this.searchJobs} />
         {this.state.jobs.length > 0 ? (
           this.state.jobs.map(j => (
             <JobCard
