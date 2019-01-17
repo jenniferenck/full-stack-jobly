@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
 
 class SearchForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { companies: [], company: '' };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(evt) {
+    evt.preventDefault();
+    console.log('this is the SEARCH TERM', this.state.company);
+    this.props.handleSearch({ search: this.state.company });
+    this.setState({ companies: [] });
+  }
+
+  handleChange(evt) {
+    this.setState({
+      [evt.target.name]: evt.target.value
+    });
+  }
+
   render() {
     return (
       <div className="SearchForm mt-5">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div className="form-group input-group">
             <label htmlFor="searchForm" />
             <input
+              onChange={this.handleChange}
+              name="company"
+              value={this.state.company}
               type="text"
               className="form-control"
               id="searchForm"
