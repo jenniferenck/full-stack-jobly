@@ -19,26 +19,15 @@ class App extends Component {
         first_name: '',
         last_name: '',
         photo_url: '',
-        email: ''
-      },
-      isApplied: false,
-      buttonHasBeenDisabled: null
+        email: '',
+        jobs: []
+      }
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleApply = this.handleApply.bind(this);
+    this.updateCurrentUser = this.updateCurrentUser.bind(this);
   }
-
-  /*
-  what happens when you hard refresh the page? You need to make sure the app can recover your login status.
-  To handle this problem in your top-level App component, 
-  add a localStorage check inside of componentDidMount. 
-  If there’s a valid token in localStorage, then ping the API 
-  to get all of the information on the current user and store it in 
-  the App component’s state (e.g. this.state.currentUser). 
-  This will let you pass current info down as a prop to any descendant component, too.
-  */
 
   async componentDidMount() {
     // decode token
@@ -47,20 +36,6 @@ class App extends Component {
       let username = decode(token).username;
 
       this.setState({ currentUser: await JoblyApi.getUser(username) });
-    }
-  }
-
-  async handleApply(jobId) {
-    try {
-      let res = await JoblyApi.applyToJob(jobId);
-      this.setState({
-        isApplied: true
-      });
-    } catch (error) {
-      this.setState({
-        error: true
-      });
-      console.log('error msg', error);
     }
   }
 
@@ -80,6 +55,13 @@ class App extends Component {
         error: true
       });
     }
+  }
+
+  async updateCurrentUser() {
+    const username = this.state.currentUser.username;
+    this.setState({
+      currentUser: await JoblyApi.getUser(username)
+    });
   }
 
   async handleLogin(username, password) {
@@ -129,12 +111,12 @@ class App extends Component {
         />
         <div className="body container">
           <Routes
-            handleApply={this.handleApply}
-            buttonHasBeenDisabled={this.state.buttonHasBeenDisabled}
             isLoggedIn={this.state.isLoggedIn}
             handleLogin={this.handleLogin}
             handleSignUp={this.handleSignUp}
             currentUser={this.state.currentUser}
+            addJobToUser={this.addJobToUser}
+            handleUpdate={this.updateCurrentUser}
           />
         </div>
       </div>

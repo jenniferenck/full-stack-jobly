@@ -9,7 +9,7 @@ import ProfileForm from './ProfileForm';
 
 class ProtectedRoute extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     if (this.props.isLoggedIn === false) {
       return <Redirect to="/login" />;
     } else {
@@ -48,8 +48,8 @@ class Routes extends Component {
             render={props => (
               <Company
                 {...props}
-                handleApply={this.props.handleApply}
-                buttonHasBeenDisabled={this.props.buttonHasBeenDisabled}
+                currentUser={this.props.currentUser}
+                handleUpdate={this.props.handleUpdate}
               />
             )}
             isLoggedIn={this.props.isLoggedIn}
@@ -68,8 +68,8 @@ class Routes extends Component {
             path="/jobs"
             render={() => (
               <Jobs
-                handleApply={this.props.handleApply}
-                buttonHasBeenDisabled={this.props.buttonHasBeenDisabled}
+                currentUser={this.props.currentUser}
+                handleUpdate={this.props.handleUpdate}
               />
             )}
             isLoggedIn={this.props.isLoggedIn}

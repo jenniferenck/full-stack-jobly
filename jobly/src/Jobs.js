@@ -16,12 +16,10 @@ class Jobs extends Component {
       this.setState({
         jobs: await JoblyApi.getAllJobs()
       });
-      console.log('JOBS', this.state.jobs);
     } catch (error) {
       this.setState({
         error: true
       });
-      console.log('error msg', error);
     }
   }
 
@@ -47,14 +45,15 @@ class Jobs extends Component {
         {this.state.jobs.length > 0 ? (
           this.state.jobs.map(j => (
             <JobCard
-              disabled={this.props.buttonHasBeenDisabled}
               handleApply={this.props.handleApply}
+              handleUpdate={this.props.handleUpdate}
               key={j.id}
               title={j.title}
               salary={j.salary}
               equity={j.equity}
               id={j.id}
-              isApplied={this.props.isApplied}
+              currentUser={this.props.currentUser}
+              applied={this.props.currentUser.jobs.find(job => job.id === j.id)}
             />
           ))
         ) : (
