@@ -24,17 +24,10 @@ class ProfileForm extends Component {
 
   async handleProfileUpdate(evt) {
     evt.preventDefault();
-    const {
-      username,
-      password,
-      first_name,
-      last_name,
-      email,
-      photo_url
-    } = this.state;
+    let { password, first_name, last_name, email, photo_url } = this.state;
     try {
       const user = await JoblyApi.updateUser(
-        username,
+        this.props.currentUser.username,
         password,
         first_name,
         last_name,
@@ -103,7 +96,7 @@ class ProfileForm extends Component {
                 onChange={this.handleChange}
                 name="photo_url"
                 value={this.state.photo_url}
-                type="text"
+                type="uri"
                 className="form-control"
                 id="photo_url"
                 placeholder={this.props.currentUser.photo_url}
