@@ -9,7 +9,7 @@ class ProfileForm extends Component {
       first_name: this.props.first_name,
       last_name: this.props.last_name,
       email: this.props.email,
-      photo_url: '',
+      photo_url: 'https://www.image.com',
       hasUpdated: false
     };
     this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
@@ -119,7 +119,7 @@ class ProfileForm extends Component {
               Save Changes
             </button>
             {this.state.hasUpdated ? (
-              <div className="alert alert-succes">
+              <div className="alert alert-success fade show mt-3" role="alert">
                 {this.props.currentUser.username} has successfully updated!
               </div>
             ) : (

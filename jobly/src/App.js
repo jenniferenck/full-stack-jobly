@@ -3,6 +3,7 @@ import Routes from './Routes';
 import NavBar from './NavBar';
 import JoblyApi from './JoblyApi';
 import { withRouter } from 'react-router-dom';
+import decode from 'jwt-decode';
 // import { getCompany, getAllCompanies } from './JoblyApi';
 
 import './App.css';
@@ -24,6 +25,27 @@ class App extends Component {
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  /*
+  what happens when you hard refresh the page? You need to make sure the app can recover your login status.
+  To handle this problem in your top-level App component, 
+  add a localStorage check inside of componentDidMount. 
+  If there’s a valid token in localStorage, then ping the API 
+  to get all of the information on the current user and store it in 
+  the App component’s state (e.g. this.state.currentUser). 
+  This will let you pass current info down as a prop to any descendant component, too.
+  */
+
+  async componentDidMount() {
+    // decode token
+    if (this.state.isLoggedIn) {
+      let token = localStorage.getItem('token');
+      let username = decode(token).username;
+
+      this.setState({ currentUser: await JoblyApi.getUser(username) });
+    }
   }
 
   async handleSignUp(username, password, first_name, last_name, email) {
@@ -59,10 +81,36 @@ class App extends Component {
     }
   }
 
+  handleLogout() {
+    try {
+      localStorage.clear();
+      this.setState(
+        {
+          isLoggedIn: false,
+          currentUser: {
+            username: '',
+            first_name: '',
+            last_name: '',
+            photo_url: '',
+            email: ''
+          }
+        },
+        () => this.props.history.replace('/')
+      );
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <NavBar isLoggedIn={this.state.isLoggedIn} />
+        <NavBar
+          isLoggedIn={this.state.isLoggedIn}
+          handleLogout={this.handleLogout}
+        />
         <div className="body container">
           <Routes
             isLoggedIn={this.state.isLoggedIn}

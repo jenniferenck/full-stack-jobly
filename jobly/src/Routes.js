@@ -69,11 +69,10 @@ class Routes extends Component {
             render={() => <h1>This will render the Profile Component</h1>}
             isLoggedIn={this.props.isLoggedIn}
           />
-          <ProtectedRoute
+          <Route
             exact
             path="/"
-            render={() => <HomePage />}
-            isLoggedIn={this.props.isLoggedIn}
+            render={() => <HomePage isLoggedIn={this.props.isLoggedIn} />}
           />
           <Redirect to="/" />
         </Switch>

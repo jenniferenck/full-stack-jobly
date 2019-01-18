@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 class NavBar extends Component {
   static defaultProps = {};
+
   render() {
     const activeStyle = {
       fontWeight: 'bold'
@@ -57,6 +58,7 @@ class NavBar extends Component {
                   activeStyle={activeStyle}
                   className="nav-link"
                   to="/logout"
+                  onClick={this.props.handleLogout}
                 >
                   Log out
                   {/* HANDLE CLICK on this NavLink to wipe local storage and send back to / */}
