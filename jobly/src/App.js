@@ -13,9 +13,15 @@ class App extends Component {
     this.state = {
       applied: false,
       isLoggedIn: !!localStorage.getItem('token'),
-      error: false
+      error: false,
+      currentUser: {
+        username: '',
+        first_name: '',
+        last_name: '',
+        photo_url: '',
+        email: ''
+      }
     };
-
     this.handleLogin = this.handleLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
   }
@@ -24,8 +30,12 @@ class App extends Component {
     try {
       await JoblyApi.signUp(username, password, first_name, last_name, email);
 
-      this.setState({ isLoggedIn: true }, () =>
-        this.props.history.replace('/jobs')
+      this.setState(
+        {
+          isLoggedIn: true,
+          currentUser: { username, first_name, last_name, email, photo_url: '' }
+        },
+        () => this.props.history.replace('/jobs')
       );
     } catch (error) {
       this.setState({
@@ -37,8 +47,9 @@ class App extends Component {
   async handleLogin(username, password) {
     try {
       await JoblyApi.login(username, password);
+      const currentUser = await JoblyApi.getUser(username);
 
-      this.setState({ isLoggedIn: true }, () =>
+      this.setState({ isLoggedIn: true, currentUser: currentUser }, () =>
         this.props.history.replace('/jobs')
       );
     } catch (error) {
@@ -57,6 +68,7 @@ class App extends Component {
             isLoggedIn={this.state.isLoggedIn}
             handleLogin={this.handleLogin}
             handleSignUp={this.handleSignUp}
+            currentUser={this.state.currentUser}
           />
         </div>
       </div>

@@ -5,7 +5,7 @@ class JoblyApi {
     const token = localStorage.getItem('token');
     paramsOrData._token = token;
 
-    console.debug('API Call:', endpoint, paramsOrData, verb);
+    console.log('API Call:', endpoint, paramsOrData, verb);
 
     try {
       return (await axios({
@@ -62,6 +62,28 @@ class JoblyApi {
   static async getJobsForCompany(handle) {
     let res = await this.request(`companies/${handle}`);
     return res.company.jobs;
+  }
+
+  // get user info
+  static async getUser(username) {
+    let res = await this.request(`users/${username}`);
+    return res.user;
+  }
+
+  static async updateUser(
+    username,
+    password,
+    first_name,
+    last_name,
+    email,
+    photo_url
+  ) {
+    let res = await this.request(
+      `users/${username}`,
+      { username, password, first_name, last_name, email, photo_url },
+      'patch'
+    );
+    return res.user;
   }
 }
 

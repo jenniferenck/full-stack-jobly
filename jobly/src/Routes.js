@@ -5,6 +5,7 @@ import Companies from './Companies';
 import Company from './Company';
 import HomePage from './HomePage';
 import LoginForm from './loginForm';
+import ProfileForm from './ProfileForm';
 
 class ProtectedRoute extends Component {
   render() {
@@ -45,6 +46,14 @@ class Routes extends Component {
             exact
             path="/companies/:name"
             render={props => <Company {...props} />}
+            isLoggedIn={this.props.isLoggedIn}
+          />
+          <ProtectedRoute
+            exact
+            path="/profile"
+            render={props => (
+              <ProfileForm {...props} currentUser={this.props.currentUser} />
+            )}
             isLoggedIn={this.props.isLoggedIn}
           />
 
