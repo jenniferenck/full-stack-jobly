@@ -20,11 +20,14 @@ class App extends Component {
         last_name: '',
         photo_url: '',
         email: ''
-      }
+      },
+      isApplied: false,
+      buttonHasBeenDisabled: null
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleSignUp = this.handleSignUp.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleApply = this.handleApply.bind(this);
   }
 
   /*
@@ -44,6 +47,20 @@ class App extends Component {
       let username = decode(token).username;
 
       this.setState({ currentUser: await JoblyApi.getUser(username) });
+    }
+  }
+
+  async handleApply(jobId) {
+    try {
+      let res = await JoblyApi.applyToJob(jobId);
+      this.setState({
+        isApplied: true
+      });
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+      console.log('error msg', error);
     }
   }
 
@@ -112,6 +129,8 @@ class App extends Component {
         />
         <div className="body container">
           <Routes
+            handleApply={this.handleApply}
+            buttonHasBeenDisabled={this.state.buttonHasBeenDisabled}
             isLoggedIn={this.state.isLoggedIn}
             handleLogin={this.handleLogin}
             handleSignUp={this.handleSignUp}

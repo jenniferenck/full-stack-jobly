@@ -14,7 +14,6 @@ class Company extends Component {
       jobs: []
     };
   }
-  static defaultProps = {};
 
   async componentDidMount() {
     console.log('company handle:', this.props.match.params.name);
@@ -31,6 +30,7 @@ class Company extends Component {
       });
     }
   }
+
   render() {
     // could destructure date for less repetition
     return (
@@ -40,11 +40,14 @@ class Company extends Component {
         {this.state.jobs.length > 0 ? (
           this.state.jobs.map(j => (
             <JobCard
+              disabled={this.props.buttonHasBeenDisabled}
+              handleApply={this.props.handleApply}
               key={j.id}
               title={j.title}
               salary={j.salary}
               equity={j.equity}
               id={j.id}
+              isApplied={this.props.isApplied}
             />
           ))
         ) : (

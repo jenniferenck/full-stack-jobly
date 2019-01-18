@@ -45,7 +45,13 @@ class Routes extends Component {
           <ProtectedRoute
             exact
             path="/companies/:name"
-            render={props => <Company {...props} />}
+            render={props => (
+              <Company
+                {...props}
+                handleApply={this.props.handleApply}
+                buttonHasBeenDisabled={this.props.buttonHasBeenDisabled}
+              />
+            )}
             isLoggedIn={this.props.isLoggedIn}
           />
           <ProtectedRoute
@@ -60,7 +66,12 @@ class Routes extends Component {
           <ProtectedRoute
             exact
             path="/jobs"
-            render={() => <Jobs />}
+            render={() => (
+              <Jobs
+                handleApply={this.props.handleApply}
+                buttonHasBeenDisabled={this.props.buttonHasBeenDisabled}
+              />
+            )}
             isLoggedIn={this.props.isLoggedIn}
           />
           <ProtectedRoute

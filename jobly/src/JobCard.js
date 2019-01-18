@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class JobCard extends Component {
   constructor(props) {
     super(props);
-    this.state = { disabled: null };
 
     this.handleClick = this.handleClick.bind(this);
   }
@@ -40,7 +39,7 @@ class JobCard extends Component {
             <p>Salary: {this.props.salary}</p>
             <p>Equity: {this.props.equity}</p>
           </h5>
-          {this.state.disabled ? disabledButton : normalButton}
+          {this.props.disabled ? disabledButton : normalButton}
         </div>
       </div>
     );
