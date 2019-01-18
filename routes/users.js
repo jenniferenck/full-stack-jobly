@@ -75,6 +75,7 @@ router.patch('/:username', ensureCorrectUser, async function(req, res, next) {
     }
 
     const user = await User.update(req.params.username, req.body);
+    console.log('req body in user routes:', req.body);
     return res.json({ user });
   } catch (err) {
     return next(err);
