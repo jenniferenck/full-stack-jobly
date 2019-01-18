@@ -12,7 +12,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      applied: false,
       isLoggedIn: !!localStorage.getItem('token'),
       error: false,
       currentUser: {

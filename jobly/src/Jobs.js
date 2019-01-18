@@ -6,9 +6,10 @@ import JoblyApi from './JoblyApi';
 class Jobs extends Component {
   constructor(props) {
     super(props);
-    this.state = { jobs: [] };
+    this.state = { jobs: [], isApplied: false };
 
     this.searchJobs = this.searchJobs.bind(this);
+    this.handleApply = this.handleApply.bind(this);
   }
   static defaultProps = {};
 
@@ -17,6 +18,7 @@ class Jobs extends Component {
       this.setState({
         jobs: await JoblyApi.getAllJobs()
       });
+      console.log('JOBS', this.state.jobs);
     } catch (error) {
       this.setState({
         error: true
@@ -39,6 +41,20 @@ class Jobs extends Component {
     }
   }
 
+  async handleApply(jobId) {
+    try {
+      let res = await JoblyApi.applyToJob(jobId);
+      this.setState({
+        isApplied: true
+      });
+    } catch (error) {
+      this.setState({
+        error: true
+      });
+      console.log('error msg', error);
+    }
+  }
+
   render() {
     // will need to pass a onSubmit handler to the searchform for generating a request
     return (
@@ -47,11 +63,13 @@ class Jobs extends Component {
         {this.state.jobs.length > 0 ? (
           this.state.jobs.map(j => (
             <JobCard
+              handleApply={this.handleApply}
               key={j.id}
               title={j.title}
               salary={j.salary}
               equity={j.equity}
               id={j.id}
+              isApplied={this.state.isApplied}
             />
           ))
         ) : (

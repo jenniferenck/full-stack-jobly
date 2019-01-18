@@ -1,10 +1,37 @@
 import React, { Component } from 'react';
 
 class JobCard extends Component {
-  static defaultProps = {};
+  constructor(props) {
+    super(props);
+    this.state = { disabled: null };
 
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.handleApply(this.props.id);
+    this.setState({ disabled: 'applied' });
+  }
   render() {
-    // destructure props...
+    let normalButton = (
+      <button
+        onClick={this.handleClick}
+        type="button"
+        className="btn btn-danger"
+      >
+        Apply
+      </button>
+    );
+    let disabledButton = (
+      <button
+        onClick={this.handleClick}
+        type="button"
+        className="btn btn-danger"
+        disabled
+      >
+        Apply
+      </button>
+    );
     return (
       <div className="JobCard card my-3">
         <div className="card-body">
@@ -13,13 +40,7 @@ class JobCard extends Component {
             <p>Salary: {this.props.salary}</p>
             <p>Equity: {this.props.equity}</p>
           </h5>
-          <button
-            // onClick={this.props.handleClick}
-            type="button"
-            className="btn btn-danger"
-          >
-            Apply
-          </button>
+          {this.state.disabled ? disabledButton : normalButton}
         </div>
       </div>
     );
