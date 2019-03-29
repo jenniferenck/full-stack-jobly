@@ -1,5 +1,6 @@
 .App {
   text-align: center;
-  background: #f7f7f7;
+  background-image: url(./images/sky-images.jpg);
+  background-size: cover;
   height: 100vh;
 }
