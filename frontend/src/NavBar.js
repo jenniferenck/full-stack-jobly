@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-// import './NavBar.css';
+import './NavBar.css';
 
 class NavBar extends Component {
   static defaultProps = {};
@@ -11,10 +11,7 @@ class NavBar extends Component {
     };
     if (this.props.isLoggedIn) {
       return (
-        <nav
-          className="navbar navbar-expand-lg navbar-primary border-bottom"
-          style={{ backgroundColor: 'white' }}
-        >
+        <nav className="NavBar navbar navbar-expand-lg navbar-primary border-bottom">
           <NavLink
             activeStyle={activeStyle}
             className="navbar-brand navbar-nav mr-auto"
@@ -70,10 +67,7 @@ class NavBar extends Component {
       );
     } else {
       return (
-        <nav
-          className="navbar navbar-expand-lg navbar-primary border-bottom"
-          style={{ backgroundColor: 'white' }}
-        >
+        <nav className="NavBar navbar navbar-expand-lg navbar-primary border-bottom">
           <NavLink
             activeStyle={activeStyle}
             className="navbar-brand navbar-nav mr-auto"
