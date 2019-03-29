@@ -42,7 +42,7 @@ class JobCard extends Component {
         <div className="card-body">
           <h5 className="card-title d-flex justify-content-between">
             <div>{this.props.title}</div>
-            <p>Salary: {this.props.salary}</p>
+            <p>Salary: {this.props.salary.toLocaleString()}</p>
             <p>Equity: {this.props.equity}</p>
           </h5>
         </div>
