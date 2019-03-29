@@ -49,7 +49,7 @@ class LoginForm extends Component {
 
   render() {
     const loginForm = (
-      <div className="card">
+      <div className="card mt-3">
         <div className="card-body p-1.25">
           <form onSubmit={this.handleSubmitLogin}>
             <div className="form-group">
@@ -87,7 +87,7 @@ class LoginForm extends Component {
     );
 
     const signUpForm = (
-      <div className="card">
+      <div className="card mt-3">
         <div className="card-body p-1.25">
           <form onSubmit={this.handleSubmitSignUp}>
             <div className="form-group">
@@ -163,7 +163,7 @@ class LoginForm extends Component {
     return (
       <div>
         <div
-          className="btn-group mr-auto"
+          className="btn-group mr-auto mt-3"
           role="group"
           aria-label="Basic example"
         >
