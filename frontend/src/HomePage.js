@@ -13,8 +13,8 @@ class HomePage extends Component {
       </Link>
     );
     return (
-      <div className="HomePage">
-        <h1>Jobly</h1>
+      <div className="HomePage mt-4">
+        <h1 className="pt-3">Jobly</h1>
         <p>All the jobs in one, convenient place. </p>
         {this.props.isLoggedIn ? loggedInHomepage : loggedOutHomepage}
       </div>
