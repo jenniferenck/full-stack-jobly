@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import genericLogo from './genericLogo.png';
+import './CompanyCard.css';
 
 class CompanyCard extends Component {
   static defaultProps = {
@@ -17,8 +18,9 @@ class CompanyCard extends Component {
             <h5 className="card-title d-flex justify-content-between">
               <span>{this.props.name}</span>
               <img
+                className="company-logo"
                 src={this.props.logo}
-                style={{ width: '50px', contentAlign: 'right' }}
+                // style={{ width: '50px', contentAlign: 'right' }}
                 alt="company logo"
               />
             </h5>

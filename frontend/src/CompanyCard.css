@@ -1,0 +1,10 @@
+.company-logo {
+  align-content: flex-end;
+  width: 8vw;
+  height: 5vw;
+}
+
+.company-logo:after {
+  display: block;
+  padding-bottom: 100%;
+}
