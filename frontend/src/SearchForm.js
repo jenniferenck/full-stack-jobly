@@ -36,7 +36,7 @@ class SearchForm extends Component {
               className="form-control"
               id="searchForm"
               aria-describedby="search"
-              placeholder="Enter Search Term..."
+              placeholder={`Search ${this.props.currentPage}...`}
             />
             <span className="input-group-btn">
               <button type="submit" className="btn btn-primary">

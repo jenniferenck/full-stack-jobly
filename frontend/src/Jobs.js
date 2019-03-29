@@ -41,7 +41,7 @@ class Jobs extends Component {
     // will need to pass a onSubmit handler to the searchform for generating a request
     return (
       <div className="Jobs">
-        <SearchForm handleSearch={this.searchJobs} />
+        <SearchForm currentPage="jobs" handleSearch={this.searchJobs} />
         {this.state.jobs.length > 0 ? (
           this.state.jobs.map(j => (
             <JobCard

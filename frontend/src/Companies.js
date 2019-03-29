@@ -43,7 +43,10 @@ class Companies extends Component {
     // console.log(this.state.companies);
     return (
       <div className="Companies">
-        <SearchForm handleSearch={this.searchCompanies} />
+        <SearchForm
+          currentPage="companies"
+          handleSearch={this.searchCompanies}
+        />
         {this.state.companies.length > 0 ? (
           this.state.companies.map(c => (
             <CompanyCard
