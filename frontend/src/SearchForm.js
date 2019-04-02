@@ -16,6 +16,7 @@ class SearchForm extends Component {
     this.setState({ companies: [], search: '', jobs: [] });
   }
 
+  // update this to search on keyboard change
   handleChange(evt) {
     this.setState({
       [evt.target.name]: evt.target.value
