@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import genericLogo from './genericLogo.png';
+import genericLogo from './images/genericLogo.png';
 
 class CompanyCard extends Component {
   static defaultProps = {
