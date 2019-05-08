@@ -1,3 +1,21 @@
+This project involves a front and backend that you will need to run separately. See intstructions for set-up below:
+
+It is advised you have the backend up and running prior to running the frontend to avoid issues with undefined data.
+
+## Backend:
+
+- `cd backend`
+- run `npm install` for packages
+- run `nodemon` to run the program
+
+## Frontend:
+
+- `cd frontend`
+- run `npm install` for packages
+- run `npm start` to run the program
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
